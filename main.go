@@ -108,7 +108,7 @@ func getServerName(data []byte) string {
 	//client hello 数据解析
 	// content type(1)|version (2)|length (2) |handshake type (1) |length (3) | version 2 |random(32)
 	// session id length(1) |cipher length (2) |cipher data (cipher length) | compression length (1)
-	//compress methods (1) | extensions length (2)
+	//compress methods (1) | extensions length (2) |extensions struct(length)
 
 	// extenstions truct :
 	//type(2) |  length (2) | list_struct (length)
