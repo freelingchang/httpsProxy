@@ -44,8 +44,14 @@ func handle(f forward){
 		log.Println("首次发送数据失败",err)
 	}
 	//log.Println(n)
-	go io.Copy(f.Server, f.Client)
-	go io.Copy(f.Client, f.Server)
+	go fdCopy(f.Server, f.Client)
+	go fdCopy(f.Client, f.Server)
+}
+
+func fdCopy(f net.Conn,t net.Conn)  {
+	defer f.Close()
+	defer t.Close()
+	io.Copy(f,t)
 }
 
 func createForwardChan(conn net.Conn,forwardChan chan forward)(){
